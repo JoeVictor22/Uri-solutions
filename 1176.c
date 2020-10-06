@@ -1,25 +1,49 @@
 #include <stdio.h>
+
+long long int fib(long long int x);
+
+long long int vtFib[10000];
+
 int main(){
-	int k,i,n,j,vet[51],vetD[49];
 	
-	while(scanf("%d", &n) != 0 && n != 0){
-		for(i = 1; i <= n; i++){
-			vet[i-1] = i;
-		}
-		n-=1;
-		for(j = 0, k = n; j < n ; j++, k--){
-			vetD[j] = vet[0];
-		
-			vet[k+1] = vet[1];
-			for(i = 0; i < n; i++){
-				vet[i] = vet[i+2];
-			}
-		}
-		printf("Discarded cards: %d", vetD[0]);
-		for(i = 1; i < n; i++){
-			printf(", %d", vetD[i]);
-		}
-		printf("\nRemaining card: %d\n", vet[0]);
+	long long int x;
+	
+	for(x = 0; x < 100; vtFib[x] = 0,x++){
 	}
+    	int n;
+	scanf("%d", &n);
+
+	while(n){
+	
+		scanf("%lli", &x);
+
+		printf("Fib(%lli) = %lli\n", x, fib(x));
+
+		n--;
+  	}
+
+
 	return 0;
+}
+
+
+long long int fib(long long int x){
+	long long int i;
+
+	if(vtFib[x-1] != 0){
+		return vtFib[x-1];
+	}else{ 
+		if(x <= 2){
+			if(x == 0){
+				return 0;
+			}else{
+			return 1;	
+			}
+		}else{
+			vtFib[x-1] = fib(x-1) + fib(x-2);
+			return vtFib[x-1];
+		}
+	}
+
+	return x;
 }
